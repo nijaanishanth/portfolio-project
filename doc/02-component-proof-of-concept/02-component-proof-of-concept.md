@@ -109,8 +109,6 @@ I will be choosing the music playlist idea since it was the one I found most int
 > we'll want a branch that you can later make a pull request from with all
 > your changes.
 
-<!-- TODO: make a new branch from main then delete this comment -->
-
 ## Assignment Tasks
 
 As stated previously, your goal with this assignment is to produce a Java
@@ -135,8 +133,6 @@ The following sections detail everything that you should do once you've
 completed the assignment.
 
 ### Changelog
-
-<!-- TODO: update CHANGELOG then delete this comment -->
 
 At the end of every assignment, you should update the
 [CHANGELOG.md](../../CHANGELOG.md) file found in the root of the project folder.
@@ -171,8 +167,6 @@ request merge (or at least tag your commits). This is not required.
 
 ### Submission
 
-<!-- TODO: read the submission instructions then delete this comment -->
-
 Assuming that your project is in a GitHub repo somewhere and your changes are on
 a proof-of-concept branch, then what we'll want you to do is create a pull
 request of all your changes. Pull requests are pretty easy to make if you're
@@ -194,7 +188,7 @@ to look over your changes. Otherwise, you defer needed changes to later pull
 requests, which could sacrifice the overall quality of your work or result in
 major rework.
 
-<!-- TODO: paste the URL to Carmen then delete this comment -->
+<https://github.com/nijaanishanth/portfolio-project/pull/1>
 
 ### Peer Review
 
@@ -224,8 +218,6 @@ table).
 If you'd like to give feedback for this assignment (or any assignment, really),
 make use of [this survey][survey]. Your feedback helps make assignments
 better for future students.
-
-<!-- TODO: follow the link to share your feedback then delete this comment -->
 
 [pottery-fails]: https://www.youtube.com/shorts/Kqb9l113F_0?feature=share
 [survey]: https://forms.gle/dumXHo6A4Enucdkq9

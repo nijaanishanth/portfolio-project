@@ -7,7 +7,7 @@
 public interface MusicPlaylist extends MusicPlaylistKernel {
 
     /**
-     * Shuffles the playlist to a different order than the original playlist
+     * Shuffles the playlist to a different order than the original playlist.
      *
      * @updates: this
      *
@@ -16,7 +16,7 @@ public interface MusicPlaylist extends MusicPlaylistKernel {
     void shuffle();
 
     /**
-     * Adds a song directly after the current song
+     * Adds a song directly after the current song.
      *
      * @param a
      *            the name of the artist of the song to be added
@@ -33,7 +33,7 @@ public interface MusicPlaylist extends MusicPlaylistKernel {
 
     /**
      * Plays the playlist from the song specified and removes the songs before
-     * it
+     * it.
      *
      * @param n
      *            the name of the song to be added

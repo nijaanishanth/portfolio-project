@@ -1,9 +1,10 @@
+
 import components.map.Map;
 import components.standard.Standard;
 
 /**
  * Kernel Implementation for {@code MusicPlaylist} implemented on {@code Queue}
- * with {@code Map}
+ * with {@code Map}.
  *
  * @author Nijaa Nishanth
  */
@@ -18,9 +19,9 @@ public interface MusicPlaylistKernel extends Standard<MusicPlaylist> {
      * @param n
      *            the name of the song to be added
      *
-     * @updates: this
+     * @updates this
      *
-     * @ensures: this = #this * n
+     * @ensures this = #this * n
      *
      */
     void addSong(String n, String a);
@@ -31,13 +32,13 @@ public interface MusicPlaylistKernel extends Standard<MusicPlaylist> {
      * @param n
      *            the name of the song to be removed
      *
-     * @updates: this
+     * @updates this
      *
-     * @returns: the song name and artist of the removed song
+     * @return the song name and artist of the removed song
      *
-     * @requires: this/= <>
+     * @requires this/= <>
      *
-     * @ensures: this = <removed> * #this
+     * @ensures this = <removed> * #this
      *
      */
     Map<String, String> removeSong(String n);
@@ -45,9 +46,9 @@ public interface MusicPlaylistKernel extends Standard<MusicPlaylist> {
     /**
      * Returns the length of the playlist.
      *
-     * @returns: number of songs in the playlist
+     * @return number of songs in the playlist
      *
-     * @ensures: length = |this|
+     * @ensures length = |this|
      */
     int length();
 

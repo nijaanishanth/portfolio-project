@@ -48,8 +48,8 @@ public abstract class MusicPlaylistSecondary implements MusicPlaylist {
     /**
      * reports whether two playlists are equal to each other.
      *
-     * @param p
-     *
+     * @param o
+     *            the object to be compared to this
      *
      * @return whether or not the two strings are equal
      *
@@ -57,18 +57,18 @@ public abstract class MusicPlaylistSecondary implements MusicPlaylist {
      *
      */
     @Override
-    boolean equals(MusicPlaylist p) {
-        if (p == null) {
+    boolean equals(Object o) {
+        if (o == null) {
             return false;
-        } else if (this.length() != p.length()) {
-            return false;
-        } else if (this == p) {
+        } else if (this == o) {
             return true;
+        } else if (this.length() != o.length()) {
+            return false;
         } else {
             Queue<Map<String, String>> temp = this.newInstance();
             temp.transferFrom(this);
             Map<String, String> songThis = this.newInstance();
-            for (Map<String, String> songP : p) {
+            for (Map<String, String> songP : o) {
                 if (!(songP.key("artist").equals(songThis.key("artist")))) {
                     return false;
                 } else if (!(songP.key("name").equals(songThis.key("name")))) {

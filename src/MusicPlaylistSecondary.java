@@ -1,7 +1,6 @@
 
 import components.map.Map;
 import components.queue.Queue;
-import components.queue.Queue1L;
 
 /**
  * Layered implementations of secondary methods for {@code SimpleWriter}.
@@ -10,16 +9,6 @@ import components.queue.Queue1L;
  *
  */
 public abstract class MusicPlaylistSecondary implements MusicPlaylist {
-
-    /*
-     * Playlist
-     */
-    private Queue<Map<String, String>> playlist;
-
-    /*
-     * Current song
-     */
-    private Map<String, String> song;
 
     /**
      * converts playlist to a string.
@@ -33,10 +22,13 @@ public abstract class MusicPlaylistSecondary implements MusicPlaylist {
      */
     @Override
     String toString() {
+        Queue<Map<String, String>> playlist = this.newInstance();
+        playlist.transferFrom(this);
         String p = "";
-        for (Map<String, String> s : this.playlist) {
+        for (Map<String, String> s : playlist) {
             p += "artist: " + s.key("artist") + " name: " + s.key("name");
         }
+        this.transferFrom(playlist);
         return p;
     }
 
@@ -50,7 +42,7 @@ public abstract class MusicPlaylistSecondary implements MusicPlaylist {
      */
     @Override
     int hashCode() {
-        return this.playlist.hashCode();
+        return this.hashCode();
     }
 
     /**
@@ -64,17 +56,18 @@ public abstract class MusicPlaylistSecondary implements MusicPlaylist {
      * @ensures this
      *
      */
+    @Override
     boolean equals(MusicPlaylist p) {
         if (p == null) {
             return false;
-        } else if (this.playlist.length() != p.length()) {
+        } else if (this.length() != p.length()) {
             return false;
-        } else if (this.playlist == p) {
+        } else if (this == p) {
             return true;
         } else {
-            Queue<Map<String, String>> temp = this.playlist.newInstance();
-            temp.transferFrom(this.playlist);
-            Map<String, String> songThis = this.song.newInstance();
+            Queue<Map<String, String>> temp = this.newInstance();
+            temp.transferFrom(this);
+            Map<String, String> songThis = this.newInstance();
             for (Map<String, String> songP : p) {
                 if (!(songP.key("artist").equals(songThis.key("artist")))) {
                     return false;
@@ -96,14 +89,14 @@ public abstract class MusicPlaylistSecondary implements MusicPlaylist {
      * @ensures |#this| = |this| & #this /= this
      */
     void shuffle() {
-        Queue<Map<String, String>> temp = new Queue1L<>();
-        temp.transferFrom(this.playlist);
+        Queue<Map<String, String>> temp = this.newInstance();
+        temp.transferFrom(this);
         while (temp.length() > 0) {
-            Map<String, String> s = temp.front;
+            Map<String, String> s = temp.front();
             String name = s.value("name");
             String artist = s.value("artist");
-            this.playlist.removeSong(name);
-            this.playlist.addSong(name, artist);
+            this.removeSong(name);
+            this.addSong(name, artist);
         }
     }
 
@@ -124,14 +117,14 @@ public abstract class MusicPlaylistSecondary implements MusicPlaylist {
      *
      */
     void addToQueue(String n, String a) {
-        Queue<Map<String, String>> temp = this.playlist.newInstance();
-        temp.transferFrom(this.playlist);
+        Queue<Map<String, String>> temp = this.newInstance();
+        temp.transferFrom(this);
         Map<String, String> s = temp.dequeue();
-        this.playlist.addSong(s.value("name"), s.value("artist"));
-        this.playlist.addSong(n, a);
+        this.addSong(s.value("name"), s.value("artist"));
+        this.addSong(n, a);
         while (temp.length() > 1) {
             Map<String, String> s = temp.dequeue();
-            this.playlist.addSong(s.value("name"), s.value("artist"));
+            this.addSong(s.value("name"), s.value("artist"));
         }
     }
 
@@ -152,14 +145,13 @@ public abstract class MusicPlaylistSecondary implements MusicPlaylist {
      */
     Queue<Map<String, String>> playFromSong(String n) {
         boolean songPassed = false;
-        Queue<Map<String, String>> passed = this.playlist.newInstance();
+        Queue<Map<String, String>> passed = this.newInstance();
         while (!songPassed) {
-            Map<String, String> s = this.playlist.front();
+            Map<String, String> s = this.front();
             if (s.value("name").equals(n)) {
                 songPassed = true;
-                this.song = s;
             } else {
-                this.playlist.removeSong(s.value("name"));
+                this.removeSong(s.value("name"));
                 passed.addSong(s.value("name"), s.value("artist"));
             }
         }

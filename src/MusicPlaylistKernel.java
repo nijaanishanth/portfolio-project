@@ -1,7 +1,8 @@
 
 import components.map.Map;
+import components.map.Map2;
 import components.queue.Queue;
-import components.standard.Standard;
+import components.queue.Queue1L;
 
 /**
  * Kernel Implementation for {@code MusicPlaylist} implemented on {@code Queue}
@@ -9,13 +10,89 @@ import components.standard.Standard;
  *
  * @author Nijaa Nishanth
  */
-public interface MusicPlaylistKernel extends Standard<MusicPlaylist> {
+public class MusicPlaylist1 extends MusicPlaylistSecondary {
 
-    /* Queue to add songs */
-    Queue<Map<String, String>> playlist;
+    /**
+     * Queue to add songs.
+     */
+    private Queue<Map<String, String>> playlist;
 
-    /* song */
-    Map<String, String> song;
+    /**
+     * Song from the Playlist.
+     */
+    private Map<String, String> song;
+
+    /**
+     * Creater of initial representation.
+     */
+    private void createNewRep() {
+        this.playlist = new Queue1L<>();
+        this.song = new Map2<>();
+    }
+
+    /*
+     * Constructors ------------------------------------------------------------
+     */
+
+    /**
+     * No-argument constructor.
+     */
+    public MusicPlaylist1() {
+        this.createNewRep();
+    }
+
+    /**
+     * Map Constructor.
+     */
+    public MusicPlaylist1(Map<String, String> s) {
+        this.createNewRep();
+        this.playlist.enqueue(s);
+        this.song = s;
+    }
+
+    /**
+     * Queue Constructor.
+     */
+    public MusicPlaylist1(Queue<Map<String, String>> p) {
+        this.createNewRep();
+        this.playlist.append(p);
+        this.song = this.playlist.front();
+    }
+
+    /**
+     * Standard methods. -------------------------------------------------------
+     */
+
+    @Override
+    public final void clear() {
+        this.createNewRep();
+    }
+
+    @Override
+    public final MusicPlaylist1 newInstance() {
+        try {
+            return this.getClass().getConstructor().newInstance();
+        } catch (ReflectiveOperationException e) {
+            throw new AssertionError(
+                    "Cannot constructo object of type " + this.getClass());
+        }
+    }
+
+    @Override
+    public final void transferFrom(MusicPlaylist1 source) {
+        assert source != null : "Violation of: source is not null";
+        assert source != this : "Violation of: source is not this";
+        assert source instanceof MusicPlaylist1 : ""
+                + "Violation of: source is of dynamic type MusicPlaylist1";
+        MusicPlaylist1 localSource = (MusicPlaylist1) source;
+        this.playlist = localSource.playlist;
+        this.song = localSource.song;
+        localSource.createNewRep();
+    }
+
+    /*
+     * Kernel Methods ---------------------------------------------------------
+     */
 
     /**
      * Adds a song to the end of the playlist.
@@ -31,8 +108,7 @@ public interface MusicPlaylistKernel extends Standard<MusicPlaylist> {
      * @ensures this = #this * n
      *
      */
-    void addSong(String n, String a)
-    {
+    public final void addSong(String n, String a) {
         this.song = new Map2<String, String>();
         this.song.add("name", n);
         this.song.add("artist", a);
@@ -54,8 +130,7 @@ public interface MusicPlaylistKernel extends Standard<MusicPlaylist> {
      * @ensures this = <removed> * #this
      *
      */
-    Map<String, String> removeSong(String n)
-    {
+    public final Map<String, String> removeSong(String n) {
         Queue<Map<String, String>> temp = new Queue1L<>();
         temp.transferFrom(this.playlist);
         Map<String, String> song = new Map2<>();
@@ -78,8 +153,7 @@ public interface MusicPlaylistKernel extends Standard<MusicPlaylist> {
      *
      * @ensures length = |this|
      */
-    int length()
-    {
+    public final int length() {
         return this.playlist.length();
     }
 

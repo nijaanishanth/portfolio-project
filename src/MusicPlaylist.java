@@ -1,6 +1,6 @@
 /**
  * Interface Implementation for {@code MusicPlaylist} implemented on
- * {@code Queue} with {@code Map}
+ * {@code Queue} with {@code Map}.
  *
  * @author Nijaa Nishanth
  */

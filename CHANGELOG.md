@@ -30,6 +30,18 @@ the following form: YYYY.0M.0D.
 - Implemented addToQueue()
 - Implemented playFromSong()
 
+## 2024.11.11
+
+### Changed
+
+- Edited interfaces for MusicPlaylist Component
+
+## 2024.10.22
+
+### Added
+
+- Designed kernel and enhanced interfaces for MusicPlaylist component
+
 ## 2024.09.16
 
 ### Added

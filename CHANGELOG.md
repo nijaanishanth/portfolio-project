@@ -13,3 +13,9 @@ the following form: YYYY.0M.0D.
 - Designed an artificial component
 - Designed a concert ticket component
 - Designed a music playlist component
+
+## 2024.10.03
+
+### Added 2
+
+- Designed a proof of concept for music playlist component

@@ -1,3 +1,4 @@
+package interfaces;
 
 import components.map.Map;
 import components.standard.Standard;

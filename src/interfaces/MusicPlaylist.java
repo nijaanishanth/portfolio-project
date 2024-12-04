@@ -1,3 +1,5 @@
+package interfaces;
+
 /**
  * Interface Implementation for {@code MusicPlaylist} implemented on
  * {@code Queue} with {@code Map}.

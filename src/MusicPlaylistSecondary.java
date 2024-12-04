@@ -1,6 +1,7 @@
 
 import components.map.Map;
 import components.queue.Queue;
+import interfaces.MusicPlaylist;
 
 /**
  * Layered implementations of secondary methods for {@code SimpleWriter}.
@@ -88,6 +89,7 @@ public abstract class MusicPlaylistSecondary implements MusicPlaylist {
      *
      * @ensures |#this| = |this| & #this /= this
      */
+    @Override
     void shuffle() {
         Queue<Map<String, String>> temp = this.newInstance();
         temp.transferFrom(this);
@@ -116,6 +118,7 @@ public abstract class MusicPlaylistSecondary implements MusicPlaylist {
      * @ensures this = #this[0, 1) * n * #this[1, |#this|)
      *
      */
+    @Override
     void addToQueue(String n, String a) {
         Queue<Map<String, String>> temp = this.newInstance();
         temp.transferFrom(this);
@@ -143,6 +146,7 @@ public abstract class MusicPlaylistSecondary implements MusicPlaylist {
      *         |#this|)
      *
      */
+    @Override
     Queue<Map<String, String>> playFromSong(String n) {
         boolean songPassed = false;
         Queue<Map<String, String>> passed = this.newInstance();

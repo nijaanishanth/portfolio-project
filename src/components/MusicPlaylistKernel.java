@@ -1,4 +1,4 @@
-package interfaces;
+package components;
 
 import components.map.Map;
 import components.standard.Standard;
@@ -43,6 +43,17 @@ public interface MusicPlaylistKernel extends Standard<MusicPlaylist> {
      *
      */
     Map<String, String> removeSong(String n);
+
+    /**
+     * Reports the current song from the playlist.
+     *
+     * @requires |this| > 0
+     *
+     * @return first song in the playlist
+     *
+     * @ensures return = first song
+     */
+    Map<String, String> currentSong();
 
     /**
      * Returns the length of the playlist.

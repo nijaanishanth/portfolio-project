@@ -1,10 +1,9 @@
+package components;
 
 import components.map.Map;
-import components.queue.Queue;
-import interfaces.MusicPlaylist;
 
 /**
- * Layered implementations of secondary methods for {@code SimpleWriter}.
+ * Layered implementations of secondary methods for {@code MusicPlaylist}.
  *
  * @author Nijaa Nishanth
  *
@@ -22,12 +21,15 @@ public abstract class MusicPlaylistSecondary implements MusicPlaylist {
      *
      */
     @Override
-    String toString() {
-        Queue<Map<String, String>> playlist = this.newInstance();
+    public String toString() {
+        MusicPlaylist playlist = this.newInstance();
+        MusicPlaylist temp = this.newInstance();
         playlist.transferFrom(this);
         String p = "";
-        for (Map<String, String> s : playlist) {
+        while (temp.length() > 0) {
+            Map<String, String> s = temp.currentSong();
             p += "artist: " + s.key("artist") + " name: " + s.key("name");
+            this.addSong(s.value("name"), s.value("artist"));
         }
         this.transferFrom(playlist);
         return p;
@@ -42,14 +44,14 @@ public abstract class MusicPlaylistSecondary implements MusicPlaylist {
      *
      */
     @Override
-    int hashCode() {
+    public int hashCode() {
         return this.hashCode();
     }
 
     /**
      * reports whether two playlists are equal to each other.
      *
-     * @param o
+     * @param obj
      *            the object to be compared to this
      *
      * @return whether or not the two strings are equal
@@ -58,18 +60,26 @@ public abstract class MusicPlaylistSecondary implements MusicPlaylist {
      *
      */
     @Override
-    boolean equals(Object o) {
-        if (o == null) {
+    public boolean equals(Object obj) {
+        if (obj == null) {
             return false;
-        } else if (this == o) {
+        } else if (this == obj) {
             return true;
-        } else if (this.length() != o.length()) {
+        }
+        MusicPlaylist o = (MusicPlaylist) obj;
+        if (this.length() != o.length()) {
             return false;
         } else {
-            Queue<Map<String, String>> temp = this.newInstance();
+            MusicPlaylist temp = this.newInstance();
+            MusicPlaylist tempO = this.newInstance();
             temp.transferFrom(this);
-            Map<String, String> songThis = this.newInstance();
-            for (Map<String, String> songP : o) {
+            tempO.transferFrom(o);
+            while (tempO.length() > 0) {
+                Map<String, String> songP = tempO.currentSong();
+                Map<String, String> songThis = temp.currentSong();
+                songP = tempO.removeSong(songP.value("name"));
+                songThis = temp.removeSong(songThis.value("name"));
+                o.addSong(songP.value("name"), songP.value("artist"));
                 if (!(songP.key("artist").equals(songThis.key("artist")))) {
                     return false;
                 } else if (!(songP.key("name").equals(songThis.key("name")))) {
@@ -90,11 +100,11 @@ public abstract class MusicPlaylistSecondary implements MusicPlaylist {
      * @ensures |#this| = |this| & #this /= this
      */
     @Override
-    void shuffle() {
-        Queue<Map<String, String>> temp = this.newInstance();
+    public void shuffle() {
+        MusicPlaylist temp = this.newInstance();
         temp.transferFrom(this);
         while (temp.length() > 0) {
-            Map<String, String> s = temp.front();
+            Map<String, String> s = temp.currentSong();
             String name = s.value("name");
             String artist = s.value("artist");
             this.removeSong(name);
@@ -119,14 +129,16 @@ public abstract class MusicPlaylistSecondary implements MusicPlaylist {
      *
      */
     @Override
-    void addToQueue(String n, String a) {
-        Queue<Map<String, String>> temp = this.newInstance();
+    public void addToQueue(String n, String a) {
+        MusicPlaylist temp = this.newInstance();
         temp.transferFrom(this);
-        Map<String, String> s = temp.dequeue();
+        Map<String, String> s = temp.currentSong();
+        temp.removeSong(s.value("name"));
         this.addSong(s.value("name"), s.value("artist"));
         this.addSong(n, a);
         while (temp.length() > 1) {
-            Map<String, String> s = temp.dequeue();
+            s = temp.currentSong();
+            temp.removeSong(s.value("name"));
             this.addSong(s.value("name"), s.value("artist"));
         }
     }
@@ -147,11 +159,11 @@ public abstract class MusicPlaylistSecondary implements MusicPlaylist {
      *
      */
     @Override
-    Queue<Map<String, String>> playFromSong(String n) {
+    public MusicPlaylist playFromSong(String n) {
         boolean songPassed = false;
-        Queue<Map<String, String>> passed = this.newInstance();
+        MusicPlaylist passed = this.newInstance();
         while (!songPassed) {
-            Map<String, String> s = this.front();
+            Map<String, String> s = this.currentSong();
             if (s.value("name").equals(n)) {
                 songPassed = true;
             } else {

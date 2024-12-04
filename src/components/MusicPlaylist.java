@@ -1,4 +1,4 @@
-package interfaces;
+package components;
 
 /**
  * Interface Implementation for {@code MusicPlaylist} implemented on
@@ -40,11 +40,14 @@ public interface MusicPlaylist extends MusicPlaylistKernel {
      * @param n
      *            the name of the song to be added
      *
+     * @requires this /= empty
+     *
      * @updates this
      *
-     *          this = #this[n|#this|, |#this|)
+     * @return the songs removed from the playlist this = #this[n|#this|,
+     *         |#this|)
      *
      */
-    void playFromSong(String n);
+    MusicPlaylist playFromSong(String n);
 
 }

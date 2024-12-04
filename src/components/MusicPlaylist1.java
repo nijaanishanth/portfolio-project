@@ -1,3 +1,4 @@
+package components;
 
 import components.map.Map;
 import components.map.Map2;
@@ -79,7 +80,7 @@ public class MusicPlaylist1 extends MusicPlaylistSecondary {
     }
 
     @Override
-    public final void transferFrom(MusicPlaylist1 source) {
+    public final void transferFrom(MusicPlaylist source) {
         assert source != null : "Violation of: source is not null";
         assert source != this : "Violation of: source is not this";
         assert source instanceof MusicPlaylist1 : ""
@@ -108,6 +109,7 @@ public class MusicPlaylist1 extends MusicPlaylistSecondary {
      * @ensures this = #this * n
      *
      */
+    @Override
     public final void addSong(String n, String a) {
         this.song = new Map2<String, String>();
         this.song.add("name", n);
@@ -130,6 +132,7 @@ public class MusicPlaylist1 extends MusicPlaylistSecondary {
      * @ensures this = <removed> * #this
      *
      */
+    @Override
     public final Map<String, String> removeSong(String n) {
         Queue<Map<String, String>> temp = new Queue1L<>();
         temp.transferFrom(this.playlist);
@@ -147,12 +150,28 @@ public class MusicPlaylist1 extends MusicPlaylistSecondary {
     }
 
     /**
+     * Reports the current song from the playlist.
+     *
+     * @requires |this| > 0
+     *
+     * @return first song in the playlist
+     *
+     * @ensures return = first song
+     */
+    @Override
+    public Map<String, String> currentSong() {
+        this.song = this.playlist.front();
+        return this.song;
+    }
+
+    /**
      * Returns the length of the playlist.
      *
      * @return number of songs in the playlist
      *
      * @ensures length = |this|
      */
+    @Override
     public final int length() {
         return this.playlist.length();
     }

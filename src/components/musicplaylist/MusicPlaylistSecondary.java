@@ -1,4 +1,4 @@
-package components;
+package components.musicplaylist;
 
 import components.map.Map;
 

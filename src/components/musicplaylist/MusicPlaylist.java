@@ -1,4 +1,4 @@
-package components;
+package components.musicplaylist;
 
 /**
  * Interface Implementation for {@code MusicPlaylist} implemented on

@@ -8,16 +8,18 @@ the following form: YYYY.0M.0D.
 
 ## 2024.12.04
 
+### Added
+
 - Added test cases for kernel and secondary methods
 - Added finishing touches
 
-## 2024.12.4
+## 2024.12.04
 
 ### Changed
 
 - Edited components hierarchy
 
-## 2024.12.3
+## 2024.12.03
 
 ### Added
 

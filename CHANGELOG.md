@@ -12,6 +12,7 @@ the following form: YYYY.0M.0D.
 
 - Added test cases for kernel and secondary methods
 - Added finishing touches
+- Completed reflection questions
 
 ## 2024.12.04
 
@@ -67,6 +68,12 @@ the following form: YYYY.0M.0D.
 
 - Designed kernel and enhanced interfaces for MusicPlaylist component
 
+## 2024.10.03
+
+### Added 2
+
+- Designed a proof of concept for music playlist component
+
 ## 2024.09.16
 
 ### Added
@@ -74,9 +81,3 @@ the following form: YYYY.0M.0D.
 - Designed an artificial component
 - Designed a concert ticket component
 - Designed a music playlist component
-
-## 2024.10.03
-
-### Added 2
-
-- Designed a proof of concept for music playlist component

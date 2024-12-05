@@ -26,6 +26,8 @@ public interface MusicPlaylist extends MusicPlaylistKernel {
      * @param n
      *            the name of the song to be added
      *
+     * @requires |this| > 0
+     *
      * @updates this
      *
      * @ensures: this = #this[0, 1) * n * #this[1, |#this|)
@@ -40,7 +42,7 @@ public interface MusicPlaylist extends MusicPlaylistKernel {
      * @param n
      *            the name of the song to be added
      *
-     * @requires this /= empty
+     * @requires |this| > 1
      *
      * @updates this
      *

@@ -28,7 +28,7 @@ public abstract class MusicPlaylistSecondary implements MusicPlaylist {
         String p = "";
         while (temp.length() > 0) {
             Map<String, String> s = temp.currentSong();
-            p += "artist: " + s.key("artist") + " name: " + s.key("name");
+            p += s.key("name") + " - " + s.key("artist") + ",";
             this.addSong(s.value("name"), s.value("artist"));
         }
         this.transferFrom(playlist);

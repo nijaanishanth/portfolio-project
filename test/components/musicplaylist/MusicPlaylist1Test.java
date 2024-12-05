@@ -65,10 +65,49 @@ public class MusicPlaylist1Test {
     /**
      * hashCode test cases.
      */
+    @Test
+    public void testHashCode() {
+        // create playlists
+        MusicPlaylist pRef = new MusicPlaylist1();
+        MusicPlaylist pTest = new MusicPlaylist1();
+        pRef.addSong("Espresso", "Sabrina Carpenter");
+        pRef.addSong("Vampire", "Olivia Rodrigo");
+        pTest.addSong("Espresso", "Sabrina Carpenter");
+        pTest.addSong("Vampire", "Olivia Rodrigo");
+
+        // check if equal
+        assertEquals(pRef, pTest);
+    }
 
     /**
      * equals test cases.
      */
+    @Test
+    public void test_equals() {
+        // create playlists
+        MusicPlaylist p1 = new MusicPlaylist1();
+        MusicPlaylist p2 = new MusicPlaylist1();
+        p1.addSong("Espresso", "Sabrina Carpenter");
+        p1.addSong("Vampire", "Olivia Rodrigo");
+        p2.addSong("Espresso", "Sabrina Carpenter");
+        p2.addSong("Vampire", "Olivia Rodrigo");
+
+        // check if equal
+        assertEquals(true, p1.equals(p2));
+    }
+
+    @Test
+    public void test_equals2() {
+        // create playlists
+        MusicPlaylist p1 = new MusicPlaylist1();
+        MusicPlaylist p2 = new MusicPlaylist1();
+        p1.addSong("Espresso", "Sabrina Carpenter");
+        p1.addSong("Vampire", "Olivia Rodrigo");
+        p2.addSong("Vampire", "Olivia Rodrigo");
+
+        // check if equal
+        assertEquals(false, p1.equals(p2));
+    }
 
     /**
      * shuffle test cases.

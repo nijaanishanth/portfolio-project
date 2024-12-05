@@ -81,9 +81,11 @@ public abstract class MusicPlaylistSecondary implements MusicPlaylist {
                 songO = tempO.removeSong(songO.value("name"));
                 songThis = temp.removeSong(songThis.value("name"));
                 o.addSong(songO.value("name"), songO.value("artist"));
-                if (!(songO.key("artist").equals(songThis.key("artist")))) {
+                this.addSong(songThis.value("name"), songThis.value("artist"));
+                if (!(songO.value("artist").equals(songThis.value("artist")))) {
                     return false;
-                } else if (!(songO.key("name").equals(songThis.key("name")))) {
+                } else if (!(songO.value("name")
+                        .equals(songThis.value("name")))) {
                     return false;
                 }
             }

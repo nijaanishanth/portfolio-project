@@ -114,10 +114,10 @@ public class MusicPlaylist1 extends MusicPlaylistSecondary {
         Map<String, String> song = this.song.newInstance();
         song.add("name", n);
         song.add("artist", a);
-        if (this.playlist.length() > 0) {
+        if (this.playlist.length() == 0) {
             this.song = song;
         }
-        this.playlist.enqueue(this.song);
+        this.playlist.enqueue(song);
     }
 
     /**
@@ -143,7 +143,7 @@ public class MusicPlaylist1 extends MusicPlaylistSecondary {
         Map<String, String> removed = this.song.newInstance();
         while (temp.length() > 0) {
             song = temp.dequeue();
-            if (!song.value("name").equals(n)) {
+            if (!(song.value("name").equals(n))) {
                 this.playlist.enqueue(song);
             } else {
                 removed.transferFrom(song);
@@ -155,19 +155,17 @@ public class MusicPlaylist1 extends MusicPlaylistSecondary {
     /**
      * Reports the current song from the playlist.
      *
-     * @requires |this| > 0
-     *
      * @return first song in the playlist
      *
-     * @ensures return = first song
+     * @ensures return = first song if |this| > 0
      */
     @Override
     public Map<String, String> currentSong() {
-        if (this.playlist.length() > 0) {
-            this.song = this.playlist.front();
-            return this.song;
+        if (this.playlist.length() == 0) {
+            return this.song.newInstance();
         }
-        return new Map2<String, String>();
+        this.song = this.playlist.front();
+        return this.song;
     }
 
     /**

@@ -47,11 +47,9 @@ public interface MusicPlaylistKernel extends Standard<MusicPlaylist> {
     /**
      * Reports the current song from the playlist.
      *
-     * @requires |this| > 0
-     *
      * @return first song in the playlist
      *
-     * @ensures return = first song
+     * @ensures return = first song if |this| > 0
      */
     Map<String, String> currentSong();
 

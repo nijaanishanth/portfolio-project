@@ -286,7 +286,7 @@ public class MusicPlaylistTest {
         MusicPlaylist pTest = new MusicPlaylist1();
         pRef.addSong("Espresso", "Sabrina Carpenter");
         pTest.addSong("Espresso", "Sabrina Carpenter");
-        Map<String, String> s = new Map2<>();
+        Map<String, String> s = pTest.currentSong().newInstance();
         s.add("name", "Espresso");
         s.add("artist", "Sabrina Carpenter");
 

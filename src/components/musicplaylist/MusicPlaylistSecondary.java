@@ -74,15 +74,16 @@ public abstract class MusicPlaylistSecondary implements MusicPlaylist {
             MusicPlaylist tempO = this.newInstance();
             temp.transferFrom(this);
             tempO.transferFrom(o);
+            // check if each song is equal
             while (tempO.length() > 0) {
-                Map<String, String> songP = tempO.currentSong();
+                Map<String, String> songO = tempO.currentSong();
                 Map<String, String> songThis = temp.currentSong();
-                songP = tempO.removeSong(songP.value("name"));
+                songO = tempO.removeSong(songO.value("name"));
                 songThis = temp.removeSong(songThis.value("name"));
-                o.addSong(songP.value("name"), songP.value("artist"));
-                if (!(songP.key("artist").equals(songThis.key("artist")))) {
+                o.addSong(songO.value("name"), songO.value("artist"));
+                if (!(songO.key("artist").equals(songThis.key("artist")))) {
                     return false;
-                } else if (!(songP.key("name").equals(songThis.key("name")))) {
+                } else if (!(songO.key("name").equals(songThis.key("name")))) {
                     return false;
                 }
             }

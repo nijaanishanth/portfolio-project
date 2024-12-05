@@ -86,8 +86,8 @@ public class MusicPlaylistTest {
     @Test
     public void test_clear() {
         MusicPlaylist pRef = new MusicPlaylist1();
-        pRef.addSong("Espresso", "Sabrina Carpenter");
         MusicPlaylist pTest = new MusicPlaylist1();
+        pTest.addSong("Espresso", "Sabrina Carpenter");
         pTest.clear();
         assertEquals(pRef, pTest);
     }
@@ -103,10 +103,10 @@ public class MusicPlaylistTest {
     @Test
     public void test_clear3() {
         MusicPlaylist pRef = new MusicPlaylist1();
-        pRef.addSong("Espresso", "Sabrina Carpenter");
-        pRef.addSong("Vampire", "Olivia Rodrigo");
-        pRef.addSong("Soft Spot", "Keshi");
         MusicPlaylist pTest = new MusicPlaylist1();
+        pTest.addSong("Espresso", "Sabrina Carpenter");
+        pTest.addSong("Vampire", "Olivia Rodrigo");
+        pTest.addSong("Soft Spot", "Keshi");
         pTest.clear();
         assertEquals(pRef, pTest);
     }

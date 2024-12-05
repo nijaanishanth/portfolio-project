@@ -111,9 +111,12 @@ public class MusicPlaylist1 extends MusicPlaylistSecondary {
      */
     @Override
     public final void addSong(String n, String a) {
-        this.song = new Map2<String, String>();
-        this.song.add("name", n);
-        this.song.add("artist", a);
+        Map<String, String> song = this.song.newInstance();
+        song.add("name", n);
+        song.add("artist", a);
+        if (this.playlist.length() > 0) {
+            this.song = song;
+        }
         this.playlist.enqueue(this.song);
     }
 
@@ -134,10 +137,10 @@ public class MusicPlaylist1 extends MusicPlaylistSecondary {
      */
     @Override
     public final Map<String, String> removeSong(String n) {
-        Queue<Map<String, String>> temp = new Queue1L<>();
+        Queue<Map<String, String>> temp = this.playlist.newInstance();
         temp.transferFrom(this.playlist);
-        Map<String, String> song = new Map2<>();
-        Map<String, String> removed = new Map2<>();
+        Map<String, String> song = this.song.newInstance();
+        Map<String, String> removed = this.song.newInstance();
         while (temp.length() > 0) {
             song = temp.dequeue();
             if (!song.value("name").equals(n)) {
@@ -160,8 +163,11 @@ public class MusicPlaylist1 extends MusicPlaylistSecondary {
      */
     @Override
     public Map<String, String> currentSong() {
-        this.song = this.playlist.front();
-        return this.song;
+        if (this.playlist.length() > 0) {
+            this.song = this.playlist.front();
+            return this.song;
+        }
+        return new Map2<String, String>();
     }
 
     /**
